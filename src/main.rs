@@ -3,6 +3,11 @@ use std::path::PathBuf;
 use std::process::ExitCode;
 
 use clap::Parser;
+// The only `unsafe` of the crate lives in this module; the library forbids it.
+// SAFETY: see the comment on the single `fcntl(1, F_GETFD)` call in the module.
+#[allow(unsafe_code)]
+mod stdout_probe;
+
 use efs_bill::{run, Options};
 
 /// Offline estimate of AWS EFS Standard/IA GB-month cost from local JSON. Reads files only, no network.
@@ -28,11 +33,22 @@ struct Cli {
     json: bool,
 }
 
+fn cannot_write() -> ExitCode {
+    let _ = writeln!(std::io::stderr(), "efs-bill: could not write output");
+    ExitCode::from(2)
+}
+
 fn main() -> ExitCode {
+    // Rust replaces a closed descriptor 1 with /dev/null before `main`; the probe
+    // recorded before that whether it was closed.
+    let stdout_closed = stdout_probe::stdout_was_closed_at_start();
     let cli = match Cli::try_parse() {
         Ok(c) => c,
         Err(e) => {
             let code = if e.use_stderr() { 2 } else { 0 };
+            if stdout_closed && code == 0 {
+                return cannot_write();
+            }
             let _ = e.print();
             return ExitCode::from(code);
         }
@@ -44,10 +60,12 @@ fn main() -> ExitCode {
         json: cli.json,
     }) {
         Ok(text) => {
+            if stdout_closed {
+                return cannot_write();
+            }
             let mut out = stdout().lock();
             if out.write_all(text.as_bytes()).is_err() || out.flush().is_err() {
-                let _ = writeln!(std::io::stderr(), "efs-bill: could not write output");
-                return ExitCode::from(2);
+                return cannot_write();
             }
             ExitCode::SUCCESS
         }

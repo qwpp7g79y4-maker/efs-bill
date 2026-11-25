@@ -362,3 +362,64 @@ fn b7_esc_in_price_file_not_raw_on_stderr() {
     assert!(String::from_utf8_lossy(err).contains("not a decimal"));
     let _ = std::fs::remove_dir_all(d);
 }
+
+#[cfg(target_os = "linux")]
+mod stdout_closed {
+    use std::process::{Command, Stdio};
+
+    const MESSAGE: &str = "efs-bill: could not write output\n";
+
+    /// Runs the binary through `sh` with a redirection on standard output.
+    fn sh(redirect: &str, arg: &str) -> (Option<i32>, String) {
+        let out = Command::new("sh")
+            .arg("-c")
+            .arg(format!("exec \"$0\" {arg} {redirect}"))
+            .arg(env!("CARGO_BIN_EXE_efs-bill"))
+            .current_dir(env!("CARGO_MANIFEST_DIR"))
+            .stderr(Stdio::piped())
+            .spawn()
+            .unwrap()
+            .wait_with_output()
+            .unwrap();
+        (
+            out.status.code(),
+            String::from_utf8_lossy(&out.stderr).into_owned(),
+        )
+    }
+
+    #[test]
+    fn closed_stdout_is_exit_2_for_a_report() {
+        let (code, err) = sh(">&-", "examples/standard.json");
+        assert_eq!(code, Some(2), "{err}");
+        assert_eq!(err, MESSAGE);
+    }
+
+    #[test]
+    fn closed_stdout_still_shows_a_usage_or_input_error() {
+        let (code, err) = sh(">&-", "--bogus");
+        assert_eq!(code, Some(2), "{err}");
+        assert!(err.contains("unexpected argument '--bogus'"), "{err}");
+        let (code, err) = sh(">&-", "/nonexistent/x.json");
+        assert_eq!(code, Some(2), "{err}");
+        assert!(!err.contains("could not write output"), "{err}");
+    }
+
+    #[test]
+    fn closed_stdout_is_exit_2_for_help_and_version() {
+        for arg in ["--help", "--version"] {
+            let (code, err) = sh(">&-", arg);
+            assert_eq!(code, Some(2), "{arg}: {err}");
+            assert_eq!(err, MESSAGE, "{arg}");
+        }
+    }
+
+    #[test]
+    fn dev_null_keeps_the_real_exit_code() {
+        for redirect in [">/dev/null", "1<>/dev/null"] {
+            for arg in ["examples/standard.json", "--help", "--version"] {
+                let (code, err) = sh(redirect, arg);
+                assert_eq!(code, Some(0), "{redirect} {arg}: {err}");
+            }
+        }
+    }
+}
