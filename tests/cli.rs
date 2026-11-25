@@ -292,6 +292,7 @@ fn b6_no_size_field_exit_2() {
     let _ = std::fs::remove_dir_all(d);
 }
 
+#[cfg(target_os = "linux")]
 #[test]
 fn b6_directory_without_lowercase_json_exit_2() {
     let d = tmp("b6b");
