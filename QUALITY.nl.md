@@ -2,14 +2,14 @@
 
 Tak `main`. Debug en release.
 
-- Datum: 2026-11-25. Geteste codecommit: ad9be4c. Linux, cargo 1.99.0.
+- Datum: 2026-11-25. Geteste codecommit: c083573. Linux, cargo 1.99.0.
 - `cargo fmt --check`: exit 0.
 - `cargo clippy --all-targets --locked -- -D warnings`: exit 0.
-- `cargo test --locked`: 68 geslaagd, 0 mislukt, 0 genegeerd (38 lib, 2 main, 6 claims, 22 cli, 0 doc). Exit 0.
-- `cargo test --release --locked`: 68 geslaagd, 0 mislukt, 0 genegeerd (zelfde verdeling). Exit 0.
+- `cargo test --locked`: 72 geslaagd, 0 mislukt, 0 genegeerd (38 lib, 2 main, 6 claims, 26 cli, 0 doc). Exit 0.
+- `cargo test --release --locked`: 72 geslaagd, 0 mislukt, 0 genegeerd (zelfde verdeling). Exit 0.
 - Versie 0.1.0. `rust-version` 1.85.
 
-Deze pagina legt controles vast. Het is geen garantie en geen fuzzrapport. Commits na ad9be4c raken alleen documenten.
+Deze pagina legt controles vast. Het is geen garantie en geen fuzzrapport. Commits na c083573 raken alleen documenten.
 
 ## Niet uitgevoerd
 
