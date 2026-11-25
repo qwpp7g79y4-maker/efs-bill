@@ -1,0 +1,12 @@
+{
+  "FileSystems": [
+    {
+      "FileSystemId": "fs-0life",
+      "Name": "archives",
+      "StandardBytes": 1073741824,
+      "IaBytes": 0,
+      "LifecyclePolicies": [ { "TransitionToIA": "AFTER_30_DAYS" } ],
+      "Tags": { "env": "prod" }
+    }
+  ]
+}

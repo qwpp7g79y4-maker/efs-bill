@@ -1,0 +1,11 @@
+{
+  "FileSystems": [
+    {
+      "FileSystemId": "fs-0123456789abcdef0",
+      "Name": "app-data",
+      "StandardBytes": 1073741824,
+      "IaBytes": 0,
+      "Tags": { "env": "prod" }
+    }
+  ]
+}

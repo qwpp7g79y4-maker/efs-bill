@@ -1,0 +1,9 @@
+{
+  "currency": "USD",
+  "region": "us-east-1",
+  "source": "https://aws.amazon.com/efs/pricing/",
+  "date": "2026-11-09",
+  "standard_per_gb_month": "0.30",
+  "ia_per_gb_month": "0.016",
+  "note": "us-east-1 Regional (Multi-AZ) Elastic Throughput rates from https://aws.amazon.com/efs/pricing/ consulted 2026-11-09 (AWS price list published 2026-11-04). Legacy-throughput IA on that page is 0.025 and is not this file. Free tier not subtracted. One Zone and throughput are not modeled."
+}

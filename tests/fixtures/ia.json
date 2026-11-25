@@ -1,0 +1,11 @@
+{
+  "FileSystems": [
+    {
+      "FileSystemId": "fs-0ia",
+      "Name": "cold-store",
+      "StandardBytes": 0,
+      "IaBytes": 1073741824,
+      "Tags": { "env": "prod" }
+    }
+  ]
+}
