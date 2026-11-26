@@ -12,7 +12,7 @@ homepage = "https://github.com/qwpp7g79y4-maker/efs-bill"
 documentation = "https://github.com/qwpp7g79y4-maker/efs-bill"
 keywords = ["aws", "efs", "cost", "cli"]
 categories = ["command-line-utilities"]
-exclude = ["task.md", ".github/"]
+exclude = ["task.md", ".github/", "*-plugin/"]
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }
