@@ -26,7 +26,7 @@ efs-bill examples/ia.json --json
 efs-bill examples/standard.json examples/ia.json --group-by env
 ```
 
-## Aan de slag in 5 minuten
+## Quickstart in 5 minutes
 
 1. Install with `cargo install --path .` (see Installation).
 2. Run `efs-bill examples/standard.json`. It prints the Standard cost of one
