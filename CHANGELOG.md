@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.1.0 — 2026-11-09
+
+Changes made after 2026-11-09; the version number did not change.
 
 - Error messages on stderr: control characters from file values (escape, bell, newline) are shown as `?`.
 - Text table: control characters in name, group and currency are shown as `?`.
@@ -10,7 +12,6 @@
 - Lifecycle tip only for a policy with `TransitionToIA`; README says which fields are not AWS fields.
 - Input without a recognised size field, or a non-object entry, is refused (exit 2). A directory without a lowercase `.json` file is an error.
 
-## 0.1.0 — 2026-11-09
 
 - First release: offline `efs-bill` from local EFS JSON exports.
 - Standard ($0.30) and IA ($0.016) GB-month rates for us-east-1 Regional Elastic Throughput.

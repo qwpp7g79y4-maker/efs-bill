@@ -1,5 +1,7 @@
 # efs-bill
 
+[![crates.io](https://img.shields.io/crates/v/efs-bill.svg)](https://crates.io/crates/efs-bill) [![downloads](https://img.shields.io/crates/d/efs-bill.svg)](https://crates.io/crates/efs-bill) [![CI](https://github.com/qwpp7g79y4-maker/efs-bill/actions/workflows/ci.yml/badge.svg)](https://github.com/qwpp7g79y4-maker/efs-bill/actions/workflows/ci.yml) [![PEPAI checked](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fqwpp7g79y4-maker%2Fefs-bill%2Fmain%2F.github%2Fbadge.json)](QUALITY.md) [![MSRV 1.85](https://img.shields.io/badge/MSRV-1.85-blue.svg)](https://github.com/qwpp7g79y4-maker/efs-bill/blob/main/Cargo.toml) [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](https://github.com/qwpp7g79y4-maker/efs-bill#license)
+
 ## Why
 
 Estimate monthly **Amazon EFS** Standard and Infrequent Access (IA) GB-month
@@ -26,7 +28,7 @@ efs-bill examples/ia.json --json
 efs-bill examples/standard.json examples/ia.json --group-by env
 ```
 
-## Aan de slag in 5 minuten
+## Quickstart in 5 minutes
 
 1. Install with `cargo install --path .` (see Installation).
 2. Run `efs-bill examples/standard.json`. It prints the Standard cost of one
@@ -136,6 +138,8 @@ changes a rate, edit the price file (or pass your own with `--prices`) and note
 the new source and date in `CHANGELOG.md`. Bugs and patches go through GitHub
 Issues, see `CONTRIBUTING.md`. Security reports go to the address in
 `SECURITY.md`.
+
+After a release the tool is dormant: a new version appears only for a reported bug, a request, or a security problem. Security always comes first.
 
 ## Development
 

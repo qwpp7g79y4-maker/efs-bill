@@ -1,5 +1,7 @@
 # Quality
 
+pep: 10
+
 Branch `main`. Debug and release.
 
 - Date: 2026-11-25. Tested code commit: c083573. Linux, cargo 1.99.0.
