@@ -8,7 +8,6 @@ license = "MIT OR Apache-2.0"
 description = "Offline estimate of AWS EFS Standard/IA GB-month cost from local JSON exports"
 readme = "README.md"
 repository = "https://github.com/qwpp7g79y4-maker/efs-bill"
-homepage = "https://github.com/qwpp7g79y4-maker/efs-bill"
 documentation = "https://github.com/qwpp7g79y4-maker/efs-bill"
 keywords = ["aws", "efs", "cost", "cli"]
 categories = ["command-line-utilities"]
