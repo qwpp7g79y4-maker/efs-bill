@@ -1,5 +1,7 @@
 # Kwaliteit
 
+pep: 8.6
+
 Tak `main`. Debug en release.
 
 - Datum: 2026-11-25. Geteste codecommit: c083573. Linux, cargo 1.99.0.
